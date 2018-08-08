@@ -9,17 +9,17 @@ MEDIA_DIR = os.path.join(os.getenv("DISPLAYCLUSTER_DIR"), u"remote/media")
 class Remote(object):
 		@cherrypy.expose
 		def index(self):
-				f = open(os.path.join(MEDIA_DIR, u'top'))
+				f = open(os.path.join('.', u'top'))
 				html = f.read()
 				f.close()
-				if os.path.isfile(os.path.join(MEDIA_DIR, u'contents')):
-					contents = open(os.path.join(MEDIA_DIR, u'contents'))
+				if os.path.isfile(os.path.join('.', u'contents')):
+					contents = open(os.path.join('.', u'contents'))
 					for content in contents:
 						content = content.strip()
 						html = html + "<input type=button value='%s' onclick=foo('%s')>" % (content.split('/')[-1], content)
 						html = html + "<br>\n"
 					contents.close()
-				f = open(os.path.join(MEDIA_DIR, u'bottom'))
+				f = open(os.path.join('.', u'bottom'))
 				html = html + f.read()
 				f.close()
 				return html
